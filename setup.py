@@ -29,5 +29,31 @@ cursor.execute("""
 
 print("Database and table created successfully!")
 
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS addresses (
+        id          INT PRIMARY KEY AUTO_INCREMENT,
+        person_id   INT NOT NULL,
+        street      VARCHAR(100),
+        city        VARCHAR(50),
+        state       VARCHAR(50),
+        zip         VARCHAR(10),
+        country     VARCHAR(50),
+        FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS notes (
+        id          INT PRIMARY KEY AUTO_INCREMENT,
+        person_id   INT NOT NULL,
+        tag         VARCHAR(50),
+        note        TEXT,
+        created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+    )
+""")
+
+print("All tables created successfully!")
+
 conn.commit()
 conn.close()
