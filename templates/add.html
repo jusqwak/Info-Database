@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Add Person</h1>
+<div class="card" style="max-width: 500px;">
+  <form method="POST">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" name="first" placeholder="Leave blank if unknown">
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" name="last" placeholder="Leave blank if unknown">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Leave blank if unknown">
+    </div>
+    <div class="form-group">
+      <label>Phone (###-###-####)</label>
+      <input type="text" name="phone" placeholder="Leave blank if unknown">
+    </div>
+    <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" name="dob">
+    </div>
+    <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+      <button type="submit" class="btn btn-primary">Add Person</button>
+      <a href="/" class="btn btn-primary" style="background:#aaa;">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

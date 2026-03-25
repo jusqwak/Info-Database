@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Edit Person #{{ person[0] }}</h1>
+<div class="card" style="max-width: 500px;">
+  <form method="POST">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" name="first" value="{{ person[1] }}">
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" name="last" value="{{ person[2] }}">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" value="{{ person[3] }}">
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="text" name="phone" value="{{ person[4] }}">
+    </div>
+    <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <a href="/" class="btn btn-primary" style="background:#aaa;">Cancel</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

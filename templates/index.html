@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>People</h1>
+
+<form class="search-bar" method="GET" action="/search">
+  <input type="text" name="q" placeholder="Search by name or email..."
+         value="{{ search_term or '' }}">
+  <button class="btn btn-primary" type="submit">Search</button>
+  {% if search_term %}
+    <a href="/" class="btn btn-primary">Clear</a>
+  {% endif %}
+</form>
+
+{% if people %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First</th>
+      <th>Last</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in people %}
+    <tr>
+      <td>{{ p[0] }}</td>
+      <td>{{ p[1] }}</td>
+      <td>{{ p[2] }}</td>
+      <td>{{ p[3] }}</td>
+      <td>{{ p[4] }}</td>
+      <td style="display:flex; gap:0.4rem;">
+        <a href="/person/{{ p[0] }}" class="btn btn-primary btn-sm">View</a>
+        <a href="/edit/{{ p[0] }}" class="btn btn-primary btn-sm">Edit</a>
+        <form method="POST" action="/delete/{{ p[0] }}" onsubmit="return confirm('Delete this person?')">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="card">
+  <p>No people found. <a href="/add">Add someone!</a></p>
+</div>
+{% endif %}
+
+{% endblock %}

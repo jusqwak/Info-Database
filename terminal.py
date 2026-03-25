@@ -16,13 +16,6 @@ def get_connection():
 # ── PERSONS ──────────────────────────────────────────────
 
 def add_person():
-    print("Leave blank if unknown.")
-    first = input("First name: ") or "Not Found"
-    last = input("Last name: ") or "Not Found"
-    email = input("Email: ") or "Not Found"
-    phone = input("Phone (###-###-####): ") or "Not Found"
-    dob = input("Date of birth (MM-DD-YYYY): ") or None
-
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -34,6 +27,13 @@ def add_person():
         WHERE t2.id IS NULL
     """)
     next_id = cursor.fetchone()[0] or 1
+
+    print("Leave blank if unknown.")
+    first = input("First name: ") or "Not Found"
+    last = input("Last name: ") or "Not Found"
+    email = input("Email: ") or f"placeholder{next_id}@gmail.com"
+    phone = input("Phone (###-###-####): ") or "Not Found"
+    dob = input("Date of birth (MM-DD-YYYY): ") or None
 
     cursor.execute("""
         INSERT INTO persons (id, first_name, last_name, email, phone, date_of_birth)
